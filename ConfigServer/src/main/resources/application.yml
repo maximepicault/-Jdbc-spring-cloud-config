@@ -1,0 +1,19 @@
+server:
+  port: 8888
+
+
+spring:
+  jpa:
+    generate-ddl: true
+  profiles:
+    active: jdbc
+  datasource:
+    url: "jdbc:postgresql://localhost:5432/my_properties"
+    driver-class-name: "org.postgresql.Driver"
+    username: "property"
+    password: "property"
+  cloud:
+    config:
+      server:
+        jdbc:
+          sql: "select property_key, property_value from property where application=? and profile=? and label=?"

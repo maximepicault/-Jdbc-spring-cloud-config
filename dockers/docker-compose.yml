@@ -1,0 +1,24 @@
+version: "3.9"
+
+volumes:
+  postgres_data:
+    driver: local
+networks:
+  myapps:
+
+services:
+  postgres_properties:
+    image: postgres
+    ports:
+      - "5432:5432"
+    volumes:
+      - ./postgres-scripts/init-db.sql:/docker-entrypoint-initdb.d/init.sql
+      - postgres_data:/var/lib/postgresql/data
+    environment:
+      POSTGRES_DB: my_properties
+      POSTGRES_USER: property
+      POSTGRES_PASSWORD: property
+    networks:
+      myapps:
+        aliases:
+          -   postgres_properties
