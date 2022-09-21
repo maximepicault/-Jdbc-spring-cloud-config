@@ -1,0 +1,11 @@
+spring:
+  config:
+    import: "configserver:"
+  application:
+    name: "my_client_app"
+  profiles:
+    active: dev
+  cloud:
+    config:
+      label: main
+
